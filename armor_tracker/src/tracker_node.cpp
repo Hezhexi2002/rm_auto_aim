@@ -280,10 +280,11 @@ void ArmorTrackerNode::armorsCallback(const auto_aim_interfaces::msg::Armors::Sh
       auto msg = std::make_shared<auto_aim_interfaces::msg::Target>(target_msg);
       gaf_solver->autoSolveTrajectory(pitch, yaw, aim_x, aim_y, aim_z, msg);
 
-      send_msg.tracking = target_msg.tracking; // Set the tracking value based on the actual condition
+      gaf_solver->setFireCallback([&](bool is_fire) { send_msg.is_fire = is_fire; });
       send_msg.position.x = aim_x;
       send_msg.position.y = aim_y;
       send_msg.position.z = aim_z;
+      send_msg.v_yaw = target_msg.v_yaw;
       send_msg.pitch = pitch;
       send_msg.yaw = yaw;
 

@@ -26,7 +26,7 @@
 #include "auto_aim_interfaces/msg/send.hpp"
 #include "auto_aim_interfaces/msg/velocity.hpp"
 #include "auto_aim_interfaces/msg/tracker_info.hpp"
-#include "armor_tracker/SolveTrajectory.hpp"
+#include "armor_executor/SolveTrajectory.hpp"
 
 namespace rm_auto_aim
 {
