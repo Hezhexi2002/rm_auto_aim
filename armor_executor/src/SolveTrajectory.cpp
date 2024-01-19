@@ -114,7 +114,7 @@ void SolveTrajectory::calculateArmorPosition(const auto_aim_interfaces::msg::Tar
         }
         tar_position[i].x = msg->position.x - r * cos(tmp_yaw);
         tar_position[i].y = msg->position.y - r * sin(tmp_yaw);
-        tar_position[i].z = use_1 ? msg->position.z : msg->position.z + msg->armors_num;
+        tar_position[i].z = msg->position.z;
         tar_position[i].yaw = tmp_yaw;
         use_1 = !use_1;
     }
@@ -123,7 +123,7 @@ void SolveTrajectory::calculateArmorPosition(const auto_aim_interfaces::msg::Tar
 std::pair<float, float> SolveTrajectory::calculatePitchAndYaw(int idx, const auto_aim_interfaces::msg::Target::SharedPtr& msg, float timeDelay, float s_bias, float z_bias, float current_v, bool use_target_center_for_yaw) {
     float aim_x = tar_position[idx].x  + msg->velocity.x * timeDelay;
     float aim_y = tar_position[idx].y  + msg->velocity.y * timeDelay;
-    float aim_z = tar_position[idx].z  + msg->velocity.z * timeDelay;
+    float aim_z = tar_position[idx].z;
 
     float yaw_x = use_target_center_for_yaw ? msg->position.x : aim_x;
     float yaw_y = use_target_center_for_yaw ? msg->position.y : aim_y;
